@@ -27,3 +27,14 @@ describe('greet function', ()=>{
     expect(result).toContain('Jeffrey');
   })
 })
+
+
+describe('getCurrencies function', ()=>{
+
+  it('should return supported currencies', ()=>{
+    const result = lib.getCurrencies();
+    //ideal way for arrays:
+   
+    expect(result).toEqual(expect.arrayContaining(['EUR','USD', 'AUD']));
+  })
+})
