@@ -17,3 +17,13 @@ describe('absolute function', ()=>{
     expect(result).toBe(0);
   });
 })
+
+
+describe('greet function', ()=>{
+  it('should return greeting message', ()=>{
+    const result = lib.greet('Jeffrey');
+    expect(result).toMatch(/Jeffrey/);
+    //or 
+    expect(result).toContain('Jeffrey');
+  })
+})
