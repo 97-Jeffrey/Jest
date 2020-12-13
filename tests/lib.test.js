@@ -44,7 +44,25 @@ describe('getProduct function',()=>{
   it('should return product with given id', ()=>{
     const result = lib.getProduct(1);
     // expect(result).toEqual({id:1,price:10})
-    // expect(result).toMatchObject({id:1,price:10})
+    expect(result).toMatchObject({id:1,price:10})
     expect(result).toHaveProperty("id",1);
+  })
+})
+
+
+
+describe('registerUser function', ()=>{
+
+  it("should throw if username is falsy",()=>{
+    const args=[null, undefined, NaN, '', 0, false];
+    args.forEach(a=>{
+      expect(()=>{lib.registerUser(a)}).toThrow();
+    })
+  })
+
+  it('should return a user object if username is valid', ()=>{
+    const result = lib.registerUser('Jeffrey');
+    expect(result).toMatchObject({username:"Jeffrey"});
+    expect(result.id).toBeGreaterThan(0);
   })
 })
