@@ -1,4 +1,5 @@
 const lib = require('../lib');
+const exercise = require('../exercise1');
 
 
 describe('absolute function', ()=>{
