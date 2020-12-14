@@ -1,5 +1,5 @@
 const lib = require('../lib');
-const exercise = require('../exercise1');
+const db = require('../db');
 
 
 describe('absolute function', ()=>{
@@ -65,5 +65,19 @@ describe('registerUser function', ()=>{
     const result = lib.registerUser('Jeffrey');
     expect(result).toMatchObject({username:"Jeffrey"});
     expect(result.id).toBeGreaterThan(0);
+  })
+})
+
+
+describe('applyDiscount function', ()=>{
+  it('should apply ten percent discount if customer has more than 10 points',()=>{
+    db.getCustomerSync = function(customerId){
+
+      console.log('Fake reading customer...'); 
+      return {id:customerId, points:20};
+    }
+    const order ={customerId:1, totalPrice:10};
+    lib.applyDiscount(order);
+    expect(order.totalPrice).toBe(9);
   })
 })
