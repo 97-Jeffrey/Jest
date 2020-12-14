@@ -1,5 +1,6 @@
 const lib = require('../lib');
 const db = require('../db');
+const mail = require('../mail');
 
 
 describe('absolute function', ()=>{
@@ -79,5 +80,20 @@ describe('applyDiscount function', ()=>{
     const order ={customerId:1, totalPrice:10};
     lib.applyDiscount(order);
     expect(order.totalPrice).toBe(9);
+  })
+})
+
+describe('notifyCustomer function', ()=>{
+
+  it("should send an email to the customer", ()=>{
+    db.getCustomerSync = jest.fn().mockReturnValue({email:'a'});
+    mail.send = jest.fn();
+
+    lib.notifyCustomer({customerId:1});
+
+    expect(mail.send).toHaveBeenCalled();
+    expect(mail.send.mock.calls[0][0]).toBe('a');
+    expect(mail.send.mock.calls[0][1]).toMatch(/order/);
+
   })
 })
