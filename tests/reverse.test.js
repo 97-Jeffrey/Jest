@@ -1,4 +1,4 @@
-const reverse = require('../reverseOnlyLetter');
+const reverse = require('../reverse');
 
 describe('the function reverseOnlyLetter', ()=>{
 
